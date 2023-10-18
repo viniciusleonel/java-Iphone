@@ -6,6 +6,6 @@ public class Principal {
         reprodutorMusical.play();
         reprodutorMusical.pause();
         reprodutorMusical.abrirMenu();
-        reprodutorMusical.abrirMenu();
+
     }
 }

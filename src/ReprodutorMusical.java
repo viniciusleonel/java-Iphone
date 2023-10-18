@@ -75,9 +75,12 @@ public class ReprodutorMusical extends Iphone{
     }
 
     public void maisVolume() {
-        if (this.getLigado()){
+        if (this.getLigado() && this.getVolume() < 100){
             this.setVolume(this.getVolume() + 5);
             System.out.println("Aumentando volume em + 5");
+        } else if(this.getVolume() >= 100){
+            this.setVolume(100);
+            System.out.println("Volume Máximo");
         }
     }
 
