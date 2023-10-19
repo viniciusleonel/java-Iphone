@@ -1,3 +1,3 @@
-public class AparelhoTelefonico {
+public interface AparelhoTelefonico {
     
 }
