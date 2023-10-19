@@ -10,6 +10,13 @@ public class Iphone implements ReprodutorMusical, AparelhoTelefonico, NavegadorI
 
     public List<String> listaDeMusicas = new ArrayList<String>();
 
+    public Iphone() {
+        this.volume = 50;
+        this.ligado = false;
+        this.tocando = false;
+        this.emLigacao = false;
+    }
+
     private int getVolume() {
         return volume;
     }
@@ -44,17 +51,29 @@ public class Iphone implements ReprodutorMusical, AparelhoTelefonico, NavegadorI
 
     @Override
     public void exibirPagina(String url) {
-        System.out.println("Exibindo página da web: " + url);
+        if(this.getLigado()){
+            System.out.println("Exibindo página da web: " + url);
+        } else {
+            System.out.println("Ligue o Iphone primeiro!");
+        }
     }
 
     @Override
     public void adicionarNovaAba() {
-        System.out.println("Abrindo nova aba do navegador");
+        if(this.getLigado()){
+            System.out.println("Abrindo nova aba do navegador");
+        } else {
+            System.out.println("Ligue o Iphone primeiro!");
+        }
     }
 
     @Override
     public void atualizarPagina() {
-        System.out.println("Atualizando página da web");
+        if(this.getLigado()){
+            System.out.println("Atualizando página da web");
+        } else {
+            System.out.println("Ligue o Iphone primeiro!");
+        }
     }
 
     @Override
@@ -69,7 +88,12 @@ public class Iphone implements ReprodutorMusical, AparelhoTelefonico, NavegadorI
 
     @Override
     public void atender(){
-        System.out.println("Atendendo ligação");
+        if(this.getLigado()){
+            System.out.println("Atendendo ligação");
+            this.setLigacao(true);
+        } else {
+            System.out.println("Ligue o Iphone primeiro!");
+        }
     }
 
     @Override
@@ -77,12 +101,18 @@ public class Iphone implements ReprodutorMusical, AparelhoTelefonico, NavegadorI
         if(this.getLigacao()){
             System.out.println("Encerrando ligação");
             this.setLigacao(false);
+        } else {
+            System.out.println("Ligue o Iphone primeiro!");
         }
     }
 
     @Override
     public void iniciarCorreioDeVoz(){
-        System.out.println("Iniciando correio de voz");
+        if(this.getLigado()){
+            System.out.println("Iniciando correio de voz");
+        } else {
+            System.out.println("Ligue o Iphone primeiro!");
+        }
     }
 
     @Override
@@ -106,19 +136,27 @@ public class Iphone implements ReprodutorMusical, AparelhoTelefonico, NavegadorI
 
     @Override
     public void abrirMenu() {
-        System.out.println("-----Menu-----");
-        System.out.println("Está ligado? " + this.getLigado() );
-        System.out.println("Está tocando? " + this.getTocando());
-        System.out.print("Volume: " + this.getVolume());
-        for (int i = 0; i <= this.getVolume(); i+= 10){
-            System.out.print("|");
+        if(this.getLigado()){
+            System.out.println("-----Menu-----");
+            System.out.println("Está ligado? " + this.getLigado() );
+            System.out.println("Está tocando? " + this.getTocando());
+            System.out.print("Volume: " + this.getVolume());
+            for (int i = 0; i <= this.getVolume(); i+= 10){
+                System.out.print("|");
+            }
+            System.out.println(" ");
+        } else {
+            System.out.println("Ligue o Iphone primeiro!");
         }
-        System.out.println(" ");
     }
 
     @Override
     public void fecharMenu() {
-        System.out.println("Fechando menu...");
+        if(this.getLigado()){
+            System.out.println("Fechando menu...");
+        } else {
+            System.out.println("Ligue o Iphone primeiro!");
+        }
     }
 
     @Override
@@ -129,6 +167,8 @@ public class Iphone implements ReprodutorMusical, AparelhoTelefonico, NavegadorI
         } else if(this.getVolume() >= 100){
             this.setVolume(100);
             System.out.println("Volume Máximo");
+        } else if(!this.getLigado()) {
+            System.out.println("Ligue o Iphone primeiro!");
         }
     }
 
